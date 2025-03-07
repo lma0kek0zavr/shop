@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -40,17 +41,32 @@ public class StorageService {
         ).collect(Collectors.toCollection(ArrayList::new)); 
     }
 
-    private void config() {
-        productMap.put(UUID.randomUUID(), new SimpleProduct("Bread", 25, UUID.randomUUID()));
-        productMap.put(UUID.randomUUID(), new SimpleProduct("Milk", 100, UUID.randomUUID()));
-        productMap.put(UUID.randomUUID(), new SimpleProduct("Cheese", 150, UUID.randomUUID()));
-        productMap.put(UUID.randomUUID(), new SimpleProduct("Sausage", 200, UUID.randomUUID()));
-        productMap.put(UUID.randomUUID(), new SimpleProduct("Potato", 50, UUID.randomUUID()));
+    public Optional<Product> getProductByID(UUID id) { 
+        return Optional.ofNullable(productMap.get(id));
+    }
 
-        articleMap.put(UUID.randomUUID(), new Article("BreadArticle", "Прекрасный хлеб, свежайщий", UUID.randomUUID()));
-        articleMap.put(UUID.randomUUID(), new Article("MilkArticle", "Молоко, просто молоко", UUID.randomUUID()));
-        articleMap.put(UUID.randomUUID(), new Article("CheeseArticle", "Тот самый пармезан", UUID.randomUUID()));
-        articleMap.put(UUID.randomUUID(), new Article("SausageArticle", "Любимая докторская", UUID.randomUUID()));
-        articleMap.put(UUID.randomUUID(), new Article("PotatoArticle", "Идеальная картошка", UUID.randomUUID()));  
+    private void config() {
+        UUID[] keys = new UUID[10];
+        keys = generateKeys(10);
+
+        productMap.put(keys[0], new SimpleProduct("Bread", 25, keys[0]));
+        productMap.put(keys[1], new SimpleProduct("Milk", 100, keys[1]));
+        productMap.put(keys[2], new SimpleProduct("Cheese", 150, keys[2]));
+        productMap.put(keys[3], new SimpleProduct("Sausage", 200, keys[3]));
+        productMap.put(keys[4], new SimpleProduct("Potato", 50, keys[4]));
+
+        articleMap.put(keys[5], new Article("BreadArticle", "Прекрасный хлеб, свежайщий", keys[5]));
+        articleMap.put(keys[6], new Article("MilkArticle", "Молоко, просто молоко", keys[6]));
+        articleMap.put(keys[7], new Article("CheeseArticle", "Тот самый пармезан", keys[7]));
+        articleMap.put(keys[8], new Article("SausageArticle", "Любимая докторская", keys[8]));
+        articleMap.put(keys[9], new Article("PotatoArticle", "Идеальная картошка", keys[9]));  
+    }
+
+    private UUID[] generateKeys(int quantity) { 
+        UUID[] keys = new UUID[quantity];
+        for (int i = 0; i < quantity; i++) { 
+            keys[i] = UUID.randomUUID();
+        }
+        return keys;
     }
 }
