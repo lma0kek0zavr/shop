@@ -13,6 +13,7 @@ import org.skypro.skyshop.model.article.Article;
 import org.skypro.skyshop.model.product.Product;
 import org.skypro.skyshop.model.product.SimpleProduct;
 import org.skypro.skyshop.model.search.Searchable;
+import org.skypro.skyshop.util.NoSuchProductException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -41,7 +42,7 @@ public class StorageService {
         ).collect(Collectors.toCollection(ArrayList::new)); 
     }
 
-    public Optional<Product> getProductByID(UUID id) { 
+    public Optional<Product> getProductByID(UUID id) throws NoSuchProductException {
         return Optional.ofNullable(productMap.get(id));
     }
 
