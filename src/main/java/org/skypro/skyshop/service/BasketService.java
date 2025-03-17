@@ -11,7 +11,7 @@ import org.skypro.skyshop.model.basket.BasketItem;
 import org.skypro.skyshop.model.basket.ProductBasket;
 import org.skypro.skyshop.model.basket.UserBasket;
 import org.skypro.skyshop.model.product.Product;
-import org.skypro.skyshop.util.NoSuchProductException;
+import org.skypro.skyshop.exceptions.NoSuchProductException;
 import org.springframework.stereotype.Service;
 
 @Service
