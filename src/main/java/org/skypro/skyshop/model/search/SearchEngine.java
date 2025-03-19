@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import org.skypro.skyshop.util.BestResultNotFoundException;
+import org.skypro.skyshop.exceptions.BestResultNotFoundException;
 
 public class SearchEngine {
     private Set<Searchable> searchables;
